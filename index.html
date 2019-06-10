@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Vue.js App</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet" />
+    <link href="vuetify.min.css" rel="stylesheet" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
+</head>
+
+<body>
+    <div id="app" class="title mt-5 ml-5">
+        {{ mensaje }}
+        <p>{{ mensajeMinisculas }}</p>
+
+        <v-container>
+            <v-layout row wrap>
+                <v-flex xs12>
+                    <div>
+                        <v-btn color="purple" class="white--text" @click="AgregarAlumnos('Karen')">Agregar alumno
+                        </v-btn>
+                    </div>
+                </v-flex>
+                <v-flex xs4>
+                    <v-text-field label="Outline" outline v-model="nombrealumno" label="Nombre alumno:">
+                    </v-text-field>
+                </v-flex>
+                <v-flex xs8>
+                    <v-btn color="blue" class="white--text" @click="AgregarAlumnosdeTexfield()">Agregar alumno desde
+                        Textfield
+                    </v-btn>
+                </v-flex>
+                <v-flex xs12>
+                    <div>Lista Alumnos: {{ alumnos }}</div>
+                </v-flex>
+            </v-layout>
+        </v-container>
+
+        <v-container>
+            <div v-if="soyVisible">
+                <v-alert :value="true" class="blue white--text">
+                    Mostrar alerta de información
+                </v-alert>
+            </div>
+            <div v-else>
+            <v-alert :value="true" class="red white--text">
+                Mostrar alerta de Error
+            </v-alert>
+            </div>
+        </v-container>
+
+            <v-container>
+                <div v-if="informacion">
+                    <v-alert :value="true" class="purple white--text">
+                         Información #1
+                    </v-alert>
+                </div>
+                <div v-else-if="soyVisible">
+                    <v-alert :value="true" class="orange white--text">
+                        Mostrar alerta de Error
+                    </v-alert>
+                </div>
+                 <div v-else>
+                <v-alert :value="true" class="pink  white--text">
+                    Información #2
+                </v-alert>
+                </div>
+            </v-container>
+
+    </div>
+    <script src="vue.js"></script>
+    <script src="vuetify.js"></script>
+    <script type="text/javascript">
+        const app = new Vue({
+            el: "#app",
+            data: {
+                mensaje: "hola mundo :)!",
+                nombrealumno: "",
+                alumnos: ["Ana", "Eric", "Juan"],
+                soyVisible: true,
+                informacion:false
+            },
+            computed: {
+                mensajeMinisculas() {
+                    return this.mensaje.toUpperCase();
+                }
+            },
+            methods: {
+                AgregarAlumnos(alumno) {
+                    this.alumnos.push(alumno);
+                },
+                AgregarAlumnosdeTexfield() {
+                    var esto = this;
+                    esto.alumnos.push(esto.nombrealumno);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
