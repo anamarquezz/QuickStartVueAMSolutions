@@ -40,35 +40,67 @@
 
         <v-container>
             <div v-if="soyVisible">
-                <v-alert :value="true" class="blue white--text">
+                <v-alert :value="true" class="pink darken-3 white--text">
                     Mostrar alerta de información
                 </v-alert>
             </div>
             <div v-else>
-            <v-alert :value="true" class="red white--text">
-                Mostrar alerta de Error
-            </v-alert>
+                <v-alert :value="true" class="red white--text">
+                    Mostrar alerta de Error
+                </v-alert>
             </div>
         </v-container>
 
-            <v-container>
-                <div v-if="informacion">
-                    <v-alert :value="true" class="purple white--text">
-                         Información #1
-                    </v-alert>
-                </div>
-                <div v-else-if="soyVisible">
-                    <v-alert :value="true" class="orange white--text">
-                        Mostrar alerta de Error
-                    </v-alert>
-                </div>
-                 <div v-else>
+        <v-container>
+            <div v-if="informacion">
+                <v-alert :value="true" class="purple white--text">
+                    Información #1
+                </v-alert>
+            </div>
+            <div v-else-if="soyVisible">
+                <v-alert :value="true" class="indigo darken-1 white--text">
+                    Mostrar alerta de Error
+                </v-alert>
+            </div>
+            <div v-else>
                 <v-alert :value="true" class="pink  white--text">
                     Información #2
                 </v-alert>
-                </div>
-            </v-container>
+            </div>
+        </v-container>
 
+        <v-container>
+            <div v-show="soyVisible">
+                <v-alert :value="true" class="deep-purple lighten-2 white--text">
+                    v-show
+                </v-alert>
+            </div>
+            <div v-show="informacion">
+                <v-alert :value="true" class="deep-purple lighten-2 white--text">
+                    v-show
+                </v-alert>
+            </div>
+        </v-container>
+
+        <v-container>
+            <div v-for="alumno in alumnos">
+                <v-img src="gitkraken.jpg" aspect-ratio="2.75" width="500"></v-img>
+                <div>{{ alumno }}</div>
+            </div>
+        </v-container>
+
+        <v-container>
+            <v-flex xs5>
+                <v-img aspect-ratio="2.75" v-bind:src="image" height="310"></v-img>
+            </v-flex>
+        </v-container>
+
+        <v-container>
+            <v-flex xs4>
+                <v-text-field label="Outline" outline v-model="nombrealumno" label="Nombre alumno:">
+                </v-text-field>
+            </v-flex>
+        </v-container>
     </div>
     <script src="vue.js"></script>
     <script src="vuetify.js"></script>
@@ -77,10 +109,12 @@
             el: "#app",
             data: {
                 mensaje: "hola mundo :)!",
-                nombrealumno: "",
+                nombrealumno: "Ana Marquez",
                 alumnos: ["Ana", "Eric", "Juan"],
                 soyVisible: true,
-                informacion:false
+                informacion: false,
+                label: "Nombre Completo",
+                image: "gitkrakenicon.png"
             },
             computed: {
                 mensajeMinisculas() {
